@@ -1,0 +1,54 @@
+
+.nav-wrapper {
+    margin-right: 20px;
+    margin-left: 20px;
+}
+.logo-image {
+    height: 56px;
+    margin: 4px 0;
+    }
+.center{
+    display: block;
+    /* margin-top: 0px; */
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    height: 200px;
+    }
+.button{
+    display: block;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    /* width: 50%; */
+    }
+.row{
+    display: block;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    /* width: 50%; */
+    }
+.nv{
+    margin-top: 0px;
+}
+.navbar-fixed {
+    width: 90%;
+    margin: 0 auto;
+    position: fixed;
+    z-index:1000;
+    top: 0px;
+
+    }
+.heading{
+    margin-top: 50px;
+}
+
+.modal-content {
+    padding: 24px;
+  }
+.btn1{
+    padding-top: 8px;
+    text-align: center;
+
+  }

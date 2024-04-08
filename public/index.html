@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>SIT 725 Practice 4</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+·   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" >
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<style>
+  
+.nav-wrapper {
+    margin-right: 20px;
+    margin-left: 20px;
+}
+.logo-image {
+    height: 56px;
+    margin: 4px 0;
+    }
+.center{
+    display: block;
+    /* margin-top: 0px; */
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    height: 200px;
+    }
+.button{
+    display: block;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    /* width: 50%; */
+    }
+.row{
+    display: block;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    /* width: 50%; */
+    }
+.nv{
+    margin-top: 0px;
+}
+.navbar-fixed {
+    width: 90%;
+    margin: 0 auto;
+    position: fixed;
+    z-index:1000;
+    top: 0px;
+
+    }
+.heading{
+    margin-top: 50px;
+}
+
+.modal-content {
+    padding: 24px;
+  }
+.btn1{
+    padding-top: 8px;
+    text-align: center;
+
+  }
+
+</style>
+</head>
+<body  onload="LoopTest()" >
+  <div style="background-attachment: fixed; background-size: 100% 100%; background-repeat: no-repeat; background-image: url('images/cartoon1.jpg') " >
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper navbar">
+        <a href="#" class="brand-logo left"><img class="logo-image" src="images/logo_navbar.jpg"></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="#">Sign up</a></li>
+            <li><a href="#">Sign in</a></li>
+   
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div>
+    <br><h4 class="heading" align="center">Welcome to SIT 725 Week 4</h4>
+    <img class="center" align = "center" src="images/image1.jpeg">
+  </div>
+  <!-- <button class="button" >CLICK HERE</button> -->
+  <div class="btn1">    
+    <a class="waves-effect waves-light btn modal-trigger" href="#modal">Add Card</a>
+  </div>
+  <div class="row" id="cards">
+   
+  </div>
+  <div id="cards-container" class="row"></div>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <h4>Modal Form</h4>
+      <form id="myForm" method="POST">
+        <div class="input-field">
+          <input type="text" id="name" name="name" required>
+          <label for="name">Name</label>
+        </div>
+        <div class="input-field">
+            <input type="text" id="image_id" name="image_id" required>
+            <label for="image_id">Image</label>
+          </div>
+        <div class="input-field">
+          <input type="email" id="email" name="email" required>
+          <label for="email">Email</label>
+        </div>
+        <button type="submit" class="btn">Submit</button>
+      </form>
+    </div>
+  </div>
+</body>
+<script src="js/script.js"></script>
+<script>
+  
+function LoopTest() {
+  const a = fetch("/get-cards", {
+    method: "GET",
+  })
+  .then(response => {
+  
+  return response.json();
+  
+  })
+  .then(data => {
+      console.log(data);
+
+    let component = '';
+    data.forEach(element => {
+      component += `<div class="col s12 m4">
+      <div class="small card">
+          <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="${element.image_url}" height="180px">
+          </div>
+          <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">${element.name}</span>
+          <!-- <p><a href="#">This is a link</a></p> -->
+          </div>
+          <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">${element.name}<i class="material-icons right">close</i></span>
+          <p>Hello!! </p>
+          <p>Thankyou for clicking me!!</p>
+          <p>Have a good day!!</p>
+          </div>
+      </div>
+    </div>`
+    });
+      document.getElementById("cards").innerHTML += component
+  
+  })
+  .catch(error => console.error('Error:', error));
+}
+</script>
+</html>
